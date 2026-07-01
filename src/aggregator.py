@@ -16,7 +16,7 @@ def evaluate_all(context: str, question: str, llm_response: str) -> dict:
         final_verdict = "Hallucinated"
     elif nli_result["verdict"] == "Faithful" and bert_result["score"] >= 0.70:
         final_verdict = "Faithful"
-    elif cosine_result["verdict"] == "Irrelevant":
+    elif cosine_result["verdict"] == "Irrelevant" and len(llm_response.split()) > 5:
         final_verdict = "Irrelevant"
     else:
         final_verdict = "Unverifiable"
